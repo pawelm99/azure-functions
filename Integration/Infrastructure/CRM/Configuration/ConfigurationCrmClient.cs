@@ -1,6 +1,6 @@
 using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk.Query;
-using EGC = CrmEarlyBound;
+using EGC =  Integration.Infrastructure.CRM.Models;
 
 namespace Integration.Infrastructure.CRM.Configuration
 {

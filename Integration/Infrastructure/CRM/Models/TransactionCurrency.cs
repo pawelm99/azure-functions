@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace CrmEarlyBound
+namespace Integration.Infrastructure.CRM.Models
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -56,6 +56,10 @@ namespace CrmEarlyBound
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string Id = "transactioncurrencyid";
 			public const string VersionNumber = "versionnumber";
+			public const string lk_transactioncurrency_createdonbehalfby = "lk_transactioncurrency_createdonbehalfby";
+			public const string lk_transactioncurrency_modifiedonbehalfby = "lk_transactioncurrency_modifiedonbehalfby";
+			public const string lk_transactioncurrencybase_createdby = "lk_transactioncurrencybase_createdby";
+			public const string lk_transactioncurrencybase_modifiedby = "lk_transactioncurrencybase_modifiedby";
 		}
 		
 		/// <summary>
@@ -431,7 +435,7 @@ namespace CrmEarlyBound
 		/// Stan waluty transakcji.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<CrmEarlyBound.TransactionCurrencyState> StateCode
+		public System.Nullable<Integration.Infrastructure.CRM.Models.TransactionCurrencyState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -439,7 +443,7 @@ namespace CrmEarlyBound
 				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
 				if ((optionSet != null))
 				{
-					return ((CrmEarlyBound.TransactionCurrencyState)(System.Enum.ToObject(typeof(CrmEarlyBound.TransactionCurrencyState), optionSet.Value)));
+					return ((Integration.Infrastructure.CRM.Models.TransactionCurrencyState)(System.Enum.ToObject(typeof(Integration.Infrastructure.CRM.Models.TransactionCurrencyState), optionSet.Value)));
 				}
 				else
 				{
@@ -542,19 +546,39 @@ namespace CrmEarlyBound
 		/// 1:N transactioncurrency_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("transactioncurrency_account")]
-		public System.Collections.Generic.IEnumerable<CrmEarlyBound.Account> transactioncurrency_account
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.Account> transactioncurrency_account
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<CrmEarlyBound.Account>("transactioncurrency_account", null);
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.Account>("transactioncurrency_account", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("transactioncurrency_account");
-				this.SetRelatedEntities<CrmEarlyBound.Account>("transactioncurrency_account", null, value);
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.Account>("transactioncurrency_account", null, value);
 				this.OnPropertyChanged("transactioncurrency_account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N transactioncurrency_contact
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("transactioncurrency_contact")]
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.Contact> transactioncurrency_contact
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.Contact>("transactioncurrency_contact", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("transactioncurrency_contact");
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.Contact>("transactioncurrency_contact", null, value);
+				this.OnPropertyChanged("transactioncurrency_contact");
 			}
 		}
 		
@@ -562,18 +586,18 @@ namespace CrmEarlyBound
 		/// 1:N TransactionCurrency_dev_Invoice
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_dev_Invoice")]
-		public System.Collections.Generic.IEnumerable<CrmEarlyBound.dev_Invoice> TransactionCurrency_dev_Invoice
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.dev_Invoice> TransactionCurrency_dev_Invoice
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<CrmEarlyBound.dev_Invoice>("TransactionCurrency_dev_Invoice", null);
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Invoice>("TransactionCurrency_dev_Invoice", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("TransactionCurrency_dev_Invoice");
-				this.SetRelatedEntities<CrmEarlyBound.dev_Invoice>("TransactionCurrency_dev_Invoice", null, value);
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Invoice>("TransactionCurrency_dev_Invoice", null, value);
 				this.OnPropertyChanged("TransactionCurrency_dev_Invoice");
 			}
 		}
@@ -582,19 +606,109 @@ namespace CrmEarlyBound
 		/// 1:N TransactionCurrency_dev_Produkt
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_dev_Produkt")]
-		public System.Collections.Generic.IEnumerable<CrmEarlyBound.dev_Produkt> TransactionCurrency_dev_Produkt
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.dev_Produkt> TransactionCurrency_dev_Produkt
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<CrmEarlyBound.dev_Produkt>("TransactionCurrency_dev_Produkt", null);
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Produkt>("TransactionCurrency_dev_Produkt", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("TransactionCurrency_dev_Produkt");
-				this.SetRelatedEntities<CrmEarlyBound.dev_Produkt>("TransactionCurrency_dev_Produkt", null, value);
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Produkt>("TransactionCurrency_dev_Produkt", null, value);
 				this.OnPropertyChanged("TransactionCurrency_dev_Produkt");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N TransactionCurrency_SystemUser
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_SystemUser")]
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.SystemUser> TransactionCurrency_SystemUser
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.SystemUser>("TransactionCurrency_SystemUser", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("TransactionCurrency_SystemUser");
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.SystemUser>("TransactionCurrency_SystemUser", null, value);
+				this.OnPropertyChanged("TransactionCurrency_SystemUser");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_transactioncurrency_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_transactioncurrency_createdonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_transactioncurrency_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_transactioncurrency_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_transactioncurrency_createdonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_transactioncurrency_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_transactioncurrency_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_transactioncurrency_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_transactioncurrency_modifiedonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_transactioncurrency_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_transactioncurrency_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_transactioncurrency_modifiedonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_transactioncurrency_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_transactioncurrency_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_transactioncurrencybase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_transactioncurrencybase_createdby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_transactioncurrencybase_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_transactioncurrencybase_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_transactioncurrencybase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_transactioncurrencybase_modifiedby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_transactioncurrencybase_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_transactioncurrencybase_modifiedby", null);
 			}
 		}
 		

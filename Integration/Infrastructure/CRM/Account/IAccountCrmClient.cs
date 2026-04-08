@@ -1,4 +1,5 @@
 ﻿using Integration.Application.Models;
+using EGC = Integration.Infrastructure.CRM.Models;
 
 namespace Integration.Infrastructure.CRM.Account
 {
@@ -6,6 +7,6 @@ namespace Integration.Infrastructure.CRM.Account
     {
         Task<Guid> CreateCustomerAsync(Customer customer, CancellationToken cancellationToken = default);
         Task<Guid> CreateSellerAsync(Vendor vendor, CancellationToken cancellationToken = default);
-        Task<CrmEarlyBound.Account?> RetrieveAccountAsync(string accountName, CancellationToken cancellationToken = default);
+        Task<EGC.Account?> RetrieveAccountAsync(string accountName, CancellationToken cancellationToken = default);
     }
 }

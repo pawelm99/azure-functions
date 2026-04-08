@@ -1,4 +1,4 @@
-﻿using CrmEarlyBound;
+﻿using Integration.Infrastructure.CRM.Models;
 using Integration.Application.Models;
 using Integration.Domain.Services.Interfaces;
 using Microsoft.Azure.Functions.Worker;

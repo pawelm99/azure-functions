@@ -8,11 +8,11 @@
 //------------------------------------------------------------------------------
 
 
-namespace CrmEarlyBound
+namespace Integration.Infrastructure.CRM.Models
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	public enum dev_ProduktState
+	public enum dev_ConfigurationState
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -23,11 +23,11 @@ namespace CrmEarlyBound
 	}
 	
 	/// <summary>
-	/// Ta tabela zawiera informacje o produktach
+	/// 
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dev_produkt")]
-	public partial class dev_Produkt : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dev_configuration")]
+	public partial class dev_Configuration : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		public static class Fields
@@ -35,13 +35,10 @@ namespace CrmEarlyBound
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
-			public const string dev_Cena = "dev_cena";
-			public const string dev_cena_Base = "dev_cena_base";
-			public const string dev_NazwaProduktu = "dev_nazwaproduktu";
-			public const string dev_ProduktId = "dev_produktid";
-			public const string Id = "dev_produktid";
-			public const string dev_quantity = "dev_quantity";
-			public const string ExchangeRate = "exchangerate";
+			public const string dev_ConfigurationId = "dev_configurationid";
+			public const string Id = "dev_configurationid";
+			public const string dev_Name = "dev_name";
+			public const string dev_ordernumber = "dev_ordernumber";
 			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
@@ -54,34 +51,37 @@ namespace CrmEarlyBound
 			public const string StateCode = "statecode";
 			public const string StatusCode = "statuscode";
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
-			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string TransactionCurrency_dev_Produkt = "TransactionCurrency_dev_Produkt";
+			public const string lk_dev_configuration_createdby = "lk_dev_configuration_createdby";
+			public const string lk_dev_configuration_createdonbehalfby = "lk_dev_configuration_createdonbehalfby";
+			public const string lk_dev_configuration_modifiedby = "lk_dev_configuration_modifiedby";
+			public const string lk_dev_configuration_modifiedonbehalfby = "lk_dev_configuration_modifiedonbehalfby";
+			public const string user_dev_configuration = "user_dev_configuration";
 		}
 		
 		/// <summary>
 		/// Default Constructor.
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public dev_Produkt() : 
+		public dev_Configuration() : 
 				base(EntityLogicalName)
 		{
 		}
 		
-		public const string EntityLogicalName = "dev_produkt";
+		public const string EntityLogicalName = "dev_configuration";
 		
-		public const string EntitySchemaName = "dev_Produkt";
+		public const string EntitySchemaName = "dev_Configuration";
 		
-		public const string PrimaryIdAttribute = "dev_produktid";
+		public const string PrimaryIdAttribute = "dev_configurationid";
 		
-		public const string PrimaryNameAttribute = "dev_nazwaproduktu";
+		public const string PrimaryNameAttribute = "dev_name";
 		
-		public const string EntityLogicalCollectionName = "dev_produkts";
+		public const string EntityLogicalCollectionName = "dev_configurations";
 		
-		public const string EntitySetName = "dev_produkts";
+		public const string EntitySetName = "dev_configurations";
 		
-		public const int EntityTypeCode = 10594;
+		public const int EntityTypeCode = 10657;
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -152,74 +152,21 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_cena")]
-		public Microsoft.Xrm.Sdk.Money dev_Cena
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("dev_cena");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("dev_Cena");
-				this.SetAttributeValue("dev_cena", value);
-				this.OnPropertyChanged("dev_Cena");
-			}
-		}
-		
-		/// <summary>
-		/// Wartość pola Price w walucie podstawowej.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_cena_base")]
-		public Microsoft.Xrm.Sdk.Money dev_cena_Base
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("dev_cena_base");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_nazwaproduktu")]
-		public string dev_NazwaProduktu
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<string>("dev_nazwaproduktu");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("dev_NazwaProduktu");
-				this.SetAttributeValue("dev_nazwaproduktu", value);
-				this.OnPropertyChanged("dev_NazwaProduktu");
-			}
-		}
-		
-		/// <summary>
 		/// Unikatowy identyfikator wystąpień encji
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_produktid")]
-		public System.Nullable<System.Guid> dev_ProduktId
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_configurationid")]
+		public System.Nullable<System.Guid> dev_ConfigurationId
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<System.Guid>>("dev_produktid");
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("dev_configurationid");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_ProduktId");
-				this.SetAttributeValue("dev_produktid", value);
+				this.OnPropertyChanging("dev_ConfigurationId");
+				this.SetAttributeValue("dev_configurationid", value);
 				if (value.HasValue)
 				{
 					base.Id = value.Value;
@@ -228,11 +175,11 @@ namespace CrmEarlyBound
 				{
 					base.Id = System.Guid.Empty;
 				}
-				this.OnPropertyChanged("dev_ProduktId");
+				this.OnPropertyChanged("dev_ConfigurationId");
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_produktid")]
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_configurationid")]
 		public override System.Guid Id
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -243,40 +190,47 @@ namespace CrmEarlyBound
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.dev_ProduktId = value;
+				this.dev_ConfigurationId = value;
 			}
 		}
 		
 		/// <summary>
 		/// 
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_quantity")]
-		public System.Nullable<int> dev_quantity
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_name")]
+		public string dev_Name
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<int>>("dev_quantity");
+				return this.GetAttributeValue<string>("dev_name");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_quantity");
-				this.SetAttributeValue("dev_quantity", value);
-				this.OnPropertyChanged("dev_quantity");
+				this.OnPropertyChanging("dev_Name");
+				this.SetAttributeValue("dev_name", value);
+				this.OnPropertyChanged("dev_Name");
 			}
 		}
 		
 		/// <summary>
-		/// Kurs wymiany waluty skojarzonej z encją w odniesieniu do waluty podstawowej.
+		/// 
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("exchangerate")]
-		public System.Nullable<decimal> ExchangeRate
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_ordernumber")]
+		public string dev_ordernumber
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<decimal>>("exchangerate");
+				return this.GetAttributeValue<string>("dev_ordernumber");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dev_ordernumber");
+				this.SetAttributeValue("dev_ordernumber", value);
+				this.OnPropertyChanged("dev_ordernumber");
 			}
 		}
 		
@@ -426,10 +380,10 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// Stan elementu/elementów Product
+		/// Stan elementu/elementów Configuration
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<CrmEarlyBound.dev_ProduktState> StateCode
+		public System.Nullable<Integration.Infrastructure.CRM.Models.dev_ConfigurationState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -437,7 +391,7 @@ namespace CrmEarlyBound
 				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
 				if ((optionSet != null))
 				{
-					return ((CrmEarlyBound.dev_ProduktState)(System.Enum.ToObject(typeof(CrmEarlyBound.dev_ProduktState), optionSet.Value)));
+					return ((Integration.Infrastructure.CRM.Models.dev_ConfigurationState)(System.Enum.ToObject(typeof(Integration.Infrastructure.CRM.Models.dev_ConfigurationState), optionSet.Value)));
 				}
 				else
 				{
@@ -461,15 +415,15 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// Przyczyna stanu elementu/elementów Product
+		/// Przyczyna stanu elementu/elementów Configuration
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual dev_Produkt_StatusCode? StatusCode
+		public virtual dev_Configuration_StatusCode? StatusCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((dev_Produkt_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((dev_Configuration_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -497,26 +451,6 @@ namespace CrmEarlyBound
 				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
 				this.SetAttributeValue("timezoneruleversionnumber", value);
 				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
-			}
-		}
-		
-		/// <summary>
-		/// Unikatowy identyfikator waluty skojarzonej z encją.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
-		public Microsoft.Xrm.Sdk.EntityReference TransactionCurrencyId
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("transactioncurrencyid");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("TransactionCurrencyId");
-				this.SetAttributeValue("transactioncurrencyid", value);
-				this.OnPropertyChanged("TransactionCurrencyId");
 			}
 		}
 		
@@ -554,23 +488,86 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// N:1 TransactionCurrency_dev_Produkt
+		/// N:1 lk_dev_configuration_createdby
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_dev_Produkt")]
-		public CrmEarlyBound.TransactionCurrency TransactionCurrency_dev_Produkt
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_configuration_createdby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_configuration_createdby
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<CrmEarlyBound.TransactionCurrency>("TransactionCurrency_dev_Produkt", null);
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_configuration_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_dev_configuration_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_configuration_createdonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_configuration_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_configuration_createdonbehalfby", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("TransactionCurrency_dev_Produkt");
-				this.SetRelatedEntity<CrmEarlyBound.TransactionCurrency>("TransactionCurrency_dev_Produkt", null, value);
-				this.OnPropertyChanged("TransactionCurrency_dev_Produkt");
+				this.OnPropertyChanging("lk_dev_configuration_createdonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_configuration_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_dev_configuration_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_dev_configuration_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_configuration_modifiedby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_configuration_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_configuration_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_dev_configuration_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_configuration_modifiedonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_configuration_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_configuration_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_dev_configuration_modifiedonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_configuration_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_dev_configuration_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_dev_configuration
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_dev_configuration")]
+		public Integration.Infrastructure.CRM.Models.SystemUser user_dev_configuration
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("user_dev_configuration", null);
 			}
 		}
 		
@@ -579,7 +576,7 @@ namespace CrmEarlyBound
 		/// <param name="anonymousType">LINQ anonymous type.</param>
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public dev_Produkt(object anonymousType) : 
+		public dev_Configuration(object anonymousType) : 
 				this()
 		{
             foreach (var p in anonymousType.GetType().GetProperties())
@@ -597,9 +594,9 @@ namespace CrmEarlyBound
                 {
                     case "id":
                         base.Id = (System.Guid)value;
-                        Attributes["dev_produktid"] = base.Id;
+                        Attributes["dev_configurationid"] = base.Id;
                         break;
-                    case "dev_produktid":
+                    case "dev_configurationid":
                         var id = (System.Nullable<System.Guid>) value;
                         if(id == null){ continue; }
                         base.Id = id.Value;

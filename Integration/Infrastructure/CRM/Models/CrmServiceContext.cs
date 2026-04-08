@@ -5,13 +5,13 @@
 //     Zmiany w tym pliku mogą spowodować nieprawidłowe zachowanie i zostaną utracone, jeśli
 //     kod zostanie ponownie wygenerowany.
 // </auto-generated>
-// Created via this command line: "C:\Users\pmartosz\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://org70551bfb.api.crm4.dynamics.com" /namespace:"CrmEarlyBound" /SuppressGeneratedCodeAttribute /out:"C:\Users\pmartosz\AppData\Roaming\MscrmTools\XrmToolBox\Settings\EBG\CrmServiceContext.cs" /servicecontextname:"CrmServiceContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.Entity.MetadataProviderService,DLaB.CrmSvcUtilExtensions" 
+// Created via this command line: "C:\Users\pmartosz\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://org70551bfb.api.crm4.dynamics.com" /namespace:"Integration.Infrastructure.CRM.Models" /SuppressGeneratedCodeAttribute /out:"C:\Users\pmartosz\AppData\Roaming\MscrmTools\XrmToolBox\Settings\EBG\CrmServiceContext.cs" /servicecontextname:"CrmServiceContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.Entity.MetadataProviderService,DLaB.CrmSvcUtilExtensions" 
 //------------------------------------------------------------------------------
 
 [assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
 [assembly: System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.95")]
 
-namespace CrmEarlyBound
+namespace Integration.Infrastructure.CRM.Models
 {
 	
 	/// <summary>
@@ -30,74 +30,110 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CrmEarlyBound.Account"/> entities.
+		/// Gets a binding to the set of all <see cref="Integration.Infrastructure.CRM.Models.Account"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CrmEarlyBound.Account> AccountSet
+		public System.Linq.IQueryable<Integration.Infrastructure.CRM.Models.Account> AccountSet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<CrmEarlyBound.Account>();
+				return this.CreateQuery<Integration.Infrastructure.CRM.Models.Account>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CrmEarlyBound.dev_Configuration"/> entities.
+		/// Gets a binding to the set of all <see cref="Integration.Infrastructure.CRM.Models.Contact"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CrmEarlyBound.dev_Configuration> dev_ConfigurationSet
+		public System.Linq.IQueryable<Integration.Infrastructure.CRM.Models.Contact> ContactSet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<CrmEarlyBound.dev_Configuration>();
+				return this.CreateQuery<Integration.Infrastructure.CRM.Models.Contact>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CrmEarlyBound.dev_Invoice"/> entities.
+		/// Gets a binding to the set of all <see cref="Integration.Infrastructure.CRM.Models.dev_Configuration"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CrmEarlyBound.dev_Invoice> dev_InvoiceSet
+		public System.Linq.IQueryable<Integration.Infrastructure.CRM.Models.dev_Configuration> dev_ConfigurationSet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<CrmEarlyBound.dev_Invoice>();
+				return this.CreateQuery<Integration.Infrastructure.CRM.Models.dev_Configuration>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CrmEarlyBound.dev_Order"/> entities.
+		/// Gets a binding to the set of all <see cref="Integration.Infrastructure.CRM.Models.dev_Invoice"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CrmEarlyBound.dev_Order> dev_OrderSet
+		public System.Linq.IQueryable<Integration.Infrastructure.CRM.Models.dev_Invoice> dev_InvoiceSet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<CrmEarlyBound.dev_Order>();
+				return this.CreateQuery<Integration.Infrastructure.CRM.Models.dev_Invoice>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CrmEarlyBound.dev_Produkt"/> entities.
+		/// Gets a binding to the set of all <see cref="Integration.Infrastructure.CRM.Models.dev_Opportunity"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CrmEarlyBound.dev_Produkt> dev_ProduktSet
+		public System.Linq.IQueryable<Integration.Infrastructure.CRM.Models.dev_Opportunity> dev_OpportunitySet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<CrmEarlyBound.dev_Produkt>();
+				return this.CreateQuery<Integration.Infrastructure.CRM.Models.dev_Opportunity>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="CrmEarlyBound.TransactionCurrency"/> entities.
+		/// Gets a binding to the set of all <see cref="Integration.Infrastructure.CRM.Models.dev_Order"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<CrmEarlyBound.TransactionCurrency> TransactionCurrencySet
+		public System.Linq.IQueryable<Integration.Infrastructure.CRM.Models.dev_Order> dev_OrderSet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<CrmEarlyBound.TransactionCurrency>();
+				return this.CreateQuery<Integration.Infrastructure.CRM.Models.dev_Order>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Integration.Infrastructure.CRM.Models.dev_Produkt"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Integration.Infrastructure.CRM.Models.dev_Produkt> dev_ProduktSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<Integration.Infrastructure.CRM.Models.dev_Produkt>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Integration.Infrastructure.CRM.Models.SystemUser"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Integration.Infrastructure.CRM.Models.SystemUser> SystemUserSet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<Integration.Infrastructure.CRM.Models.SystemUser>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Integration.Infrastructure.CRM.Models.TransactionCurrency"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Integration.Infrastructure.CRM.Models.TransactionCurrency> TransactionCurrencySet
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.CreateQuery<Integration.Infrastructure.CRM.Models.TransactionCurrency>();
 			}
 		}
 	}

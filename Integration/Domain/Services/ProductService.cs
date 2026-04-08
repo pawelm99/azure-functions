@@ -1,7 +1,7 @@
 ﻿using Data.Domain;
 using Integration.Domain.Services.Interfaces;
 using Integration.Infrastructure.CRM.Product;
-using EGC = CrmEarlyBound;
+using EGC =  Integration.Infrastructure.CRM.Models;
 
 namespace Integration.Domain.Services
 {

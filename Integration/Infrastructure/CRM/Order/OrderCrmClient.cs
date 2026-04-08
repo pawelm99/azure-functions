@@ -1,8 +1,8 @@
-using CrmEarlyBound;
+using Integration.Infrastructure.CRM.Models;
 using Integration.Domain.Services.Interfaces;
 using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
-using EGC = CrmEarlyBound;
+using EGC =  Integration.Infrastructure.CRM.Models;
 
 namespace Integration.Infrastructure.CRM.Order
 {

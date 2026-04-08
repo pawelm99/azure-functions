@@ -8,11 +8,11 @@
 //------------------------------------------------------------------------------
 
 
-namespace CrmEarlyBound
+namespace Integration.Infrastructure.CRM.Models
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	public enum dev_OrderState
+	public enum dev_OpportunityState
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -26,8 +26,8 @@ namespace CrmEarlyBound
 	/// 
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dev_order")]
-	public partial class dev_Order : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dev_opportunity")]
+	public partial class dev_Opportunity : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		public static class Fields
@@ -35,11 +35,15 @@ namespace CrmEarlyBound
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
-			public const string dev_customer = "dev_customer";
+			public const string dev_contact = "dev_contact";
+			public const string dev_file_integration = "dev_file_integration";
+			public const string dev_file_integration_Name = "dev_file_integration_name";
+			public const string dev_lastintegrationdate = "dev_lastintegrationdate";
 			public const string dev_Name = "dev_name";
-			public const string dev_orderdate = "dev_orderdate";
-			public const string dev_OrderId = "dev_orderid";
-			public const string Id = "dev_orderid";
+			public const string dev_offernumber_integration = "dev_offernumber_integration";
+			public const string dev_OpportunityId = "dev_opportunityid";
+			public const string Id = "dev_opportunityid";
+			public const string EmailAddress = "emailaddress";
 			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
@@ -54,31 +58,37 @@ namespace CrmEarlyBound
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string dev_order_customer_account = "dev_order_customer_account";
+			public const string dev_account_dev_opportunity = "dev_account_dev_opportunity";
+			public const string dev_contact_dev_opportunity = "dev_contact_dev_opportunity";
+			public const string lk_dev_opportunity_createdby = "lk_dev_opportunity_createdby";
+			public const string lk_dev_opportunity_createdonbehalfby = "lk_dev_opportunity_createdonbehalfby";
+			public const string lk_dev_opportunity_modifiedby = "lk_dev_opportunity_modifiedby";
+			public const string lk_dev_opportunity_modifiedonbehalfby = "lk_dev_opportunity_modifiedonbehalfby";
+			public const string user_dev_opportunity = "user_dev_opportunity";
 		}
 		
 		/// <summary>
 		/// Default Constructor.
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public dev_Order() : 
+		public dev_Opportunity() : 
 				base(EntityLogicalName)
 		{
 		}
 		
-		public const string EntityLogicalName = "dev_order";
+		public const string EntityLogicalName = "dev_opportunity";
 		
-		public const string EntitySchemaName = "dev_Order";
+		public const string EntitySchemaName = "dev_Opportunity";
 		
-		public const string PrimaryIdAttribute = "dev_orderid";
+		public const string PrimaryIdAttribute = "dev_opportunityid";
 		
 		public const string PrimaryNameAttribute = "dev_name";
 		
-		public const string EntityLogicalCollectionName = "dev_orders";
+		public const string EntityLogicalCollectionName = "dev_opportunities";
 		
-		public const string EntitySetName = "dev_orders";
+		public const string EntitySetName = "dev_opportunities";
 		
-		public const int EntityTypeCode = 10559;
+		public const int EntityTypeCode = 10569;
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -151,20 +161,66 @@ namespace CrmEarlyBound
 		/// <summary>
 		/// 
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_customer")]
-		public Microsoft.Xrm.Sdk.EntityReference dev_customer
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_contact")]
+		public Microsoft.Xrm.Sdk.EntityReference dev_contact
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("dev_customer");
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("dev_contact");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_customer");
-				this.SetAttributeValue("dev_customer", value);
-				this.OnPropertyChanged("dev_customer");
+				this.OnPropertyChanging("dev_contact");
+				this.SetAttributeValue("dev_contact", value);
+				this.OnPropertyChanged("dev_contact");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_file_integration")]
+		public object dev_file_integration
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<object>("dev_file_integration");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_file_integration_name")]
+		public string dev_file_integration_Name
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("dev_file_integration_name");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_lastintegrationdate")]
+		public System.Nullable<System.DateTime> dev_lastintegrationdate
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("dev_lastintegrationdate");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dev_lastintegrationdate");
+				this.SetAttributeValue("dev_lastintegrationdate", value);
+				this.OnPropertyChanged("dev_lastintegrationdate");
 			}
 		}
 		
@@ -191,39 +247,39 @@ namespace CrmEarlyBound
 		/// <summary>
 		/// 
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_orderdate")]
-		public System.Nullable<System.DateTime> dev_orderdate
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_offernumber_integration")]
+		public string dev_offernumber_integration
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<System.DateTime>>("dev_orderdate");
+				return this.GetAttributeValue<string>("dev_offernumber_integration");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_orderdate");
-				this.SetAttributeValue("dev_orderdate", value);
-				this.OnPropertyChanged("dev_orderdate");
+				this.OnPropertyChanging("dev_offernumber_integration");
+				this.SetAttributeValue("dev_offernumber_integration", value);
+				this.OnPropertyChanged("dev_offernumber_integration");
 			}
 		}
 		
 		/// <summary>
 		/// Unikatowy identyfikator wystąpień encji
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_orderid")]
-		public System.Nullable<System.Guid> dev_OrderId
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_opportunityid")]
+		public System.Nullable<System.Guid> dev_OpportunityId
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<System.Guid>>("dev_orderid");
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("dev_opportunityid");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_OrderId");
-				this.SetAttributeValue("dev_orderid", value);
+				this.OnPropertyChanging("dev_OpportunityId");
+				this.SetAttributeValue("dev_opportunityid", value);
 				if (value.HasValue)
 				{
 					base.Id = value.Value;
@@ -232,11 +288,11 @@ namespace CrmEarlyBound
 				{
 					base.Id = System.Guid.Empty;
 				}
-				this.OnPropertyChanged("dev_OrderId");
+				this.OnPropertyChanged("dev_OpportunityId");
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_orderid")]
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_opportunityid")]
 		public override System.Guid Id
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -247,7 +303,27 @@ namespace CrmEarlyBound
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.dev_OrderId = value;
+				this.dev_OpportunityId = value;
+			}
+		}
+		
+		/// <summary>
+		/// Podstawowy adres e-mail encji.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("emailaddress")]
+		public string EmailAddress
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<string>("emailaddress");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("EmailAddress");
+				this.SetAttributeValue("emailaddress", value);
+				this.OnPropertyChanged("EmailAddress");
 			}
 		}
 		
@@ -397,10 +473,10 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// Stan elementu/elementów Order
+		/// Stan elementu/elementów Opportunity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<CrmEarlyBound.dev_OrderState> StateCode
+		public System.Nullable<Integration.Infrastructure.CRM.Models.dev_OpportunityState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -408,7 +484,7 @@ namespace CrmEarlyBound
 				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
 				if ((optionSet != null))
 				{
-					return ((CrmEarlyBound.dev_OrderState)(System.Enum.ToObject(typeof(CrmEarlyBound.dev_OrderState), optionSet.Value)));
+					return ((Integration.Infrastructure.CRM.Models.dev_OpportunityState)(System.Enum.ToObject(typeof(Integration.Infrastructure.CRM.Models.dev_OpportunityState), optionSet.Value)));
 				}
 				else
 				{
@@ -432,15 +508,15 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// Przyczyna stanu elementu/elementów Order
+		/// Przyczyna stanu elementu/elementów Opportunity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual dev_Order_StatusCode? StatusCode
+		public virtual dev_Opportunity_StatusCode? StatusCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((dev_Order_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((dev_Opportunity_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -505,43 +581,128 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// 1:N dev_Order_dev_order_dev_Invoice
+		/// N:1 dev_account_dev_opportunity
 		/// </summary>
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_Order_dev_order_dev_Invoice")]
-		public System.Collections.Generic.IEnumerable<CrmEarlyBound.dev_Invoice> dev_Order_dev_order_dev_Invoice
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_contact")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_account_dev_opportunity")]
+		public Integration.Infrastructure.CRM.Models.Account dev_account_dev_opportunity
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<CrmEarlyBound.dev_Invoice>("dev_Order_dev_order_dev_Invoice", null);
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.Account>("dev_account_dev_opportunity", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_Order_dev_order_dev_Invoice");
-				this.SetRelatedEntities<CrmEarlyBound.dev_Invoice>("dev_Order_dev_order_dev_Invoice", null, value);
-				this.OnPropertyChanged("dev_Order_dev_order_dev_Invoice");
+				this.OnPropertyChanging("dev_account_dev_opportunity");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.Account>("dev_account_dev_opportunity", null, value);
+				this.OnPropertyChanged("dev_account_dev_opportunity");
 			}
 		}
 		
 		/// <summary>
-		/// N:1 dev_order_customer_account
+		/// N:1 dev_contact_dev_opportunity
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_customer")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_order_customer_account")]
-		public CrmEarlyBound.Account dev_order_customer_account
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_contact")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_contact_dev_opportunity")]
+		public Integration.Infrastructure.CRM.Models.Contact dev_contact_dev_opportunity
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<CrmEarlyBound.Account>("dev_order_customer_account", null);
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.Contact>("dev_contact_dev_opportunity", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_order_customer_account");
-				this.SetRelatedEntity<CrmEarlyBound.Account>("dev_order_customer_account", null, value);
-				this.OnPropertyChanged("dev_order_customer_account");
+				this.OnPropertyChanging("dev_contact_dev_opportunity");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.Contact>("dev_contact_dev_opportunity", null, value);
+				this.OnPropertyChanged("dev_contact_dev_opportunity");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_dev_opportunity_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_opportunity_createdby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_opportunity_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_opportunity_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_dev_opportunity_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_opportunity_createdonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_opportunity_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_opportunity_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_dev_opportunity_createdonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_opportunity_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_dev_opportunity_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_dev_opportunity_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_opportunity_modifiedby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_opportunity_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_opportunity_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_dev_opportunity_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_opportunity_modifiedonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_opportunity_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_opportunity_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_dev_opportunity_modifiedonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_opportunity_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_dev_opportunity_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_dev_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_dev_opportunity")]
+		public Integration.Infrastructure.CRM.Models.SystemUser user_dev_opportunity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("user_dev_opportunity", null);
 			}
 		}
 		
@@ -550,7 +711,7 @@ namespace CrmEarlyBound
 		/// <param name="anonymousType">LINQ anonymous type.</param>
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public dev_Order(object anonymousType) : 
+		public dev_Opportunity(object anonymousType) : 
 				this()
 		{
             foreach (var p in anonymousType.GetType().GetProperties())
@@ -568,9 +729,9 @@ namespace CrmEarlyBound
                 {
                     case "id":
                         base.Id = (System.Guid)value;
-                        Attributes["dev_orderid"] = base.Id;
+                        Attributes["dev_opportunityid"] = base.Id;
                         break;
-                    case "dev_orderid":
+                    case "dev_opportunityid":
                         var id = (System.Nullable<System.Guid>) value;
                         if(id == null){ continue; }
                         base.Id = id.Value;

@@ -3,7 +3,7 @@ using Integration.Application.Models;
 using Integration.Domain.Services.Interfaces;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
-using EGC = CrmEarlyBound;
+using EGC =  Integration.Infrastructure.CRM.Models;
 
 namespace Integration.Activities
 {

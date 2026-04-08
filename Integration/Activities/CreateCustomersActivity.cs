@@ -1,6 +1,6 @@
-﻿using CrmEarlyBound;
-using Integration.Application.Models;
+﻿using Integration.Application.Models;
 using Integration.Domain.Services.Interfaces;
+using Integration.Infrastructure.CRM.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 

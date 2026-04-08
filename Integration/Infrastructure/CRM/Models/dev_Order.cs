@@ -8,11 +8,11 @@
 //------------------------------------------------------------------------------
 
 
-namespace CrmEarlyBound
+namespace Integration.Infrastructure.CRM.Models
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	public enum dev_ConfigurationState
+	public enum dev_OrderState
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -26,8 +26,8 @@ namespace CrmEarlyBound
 	/// 
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dev_configuration")]
-	public partial class dev_Configuration : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dev_order")]
+	public partial class dev_Order : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		public static class Fields
@@ -35,10 +35,11 @@ namespace CrmEarlyBound
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
-			public const string dev_ConfigurationId = "dev_configurationid";
-			public const string Id = "dev_configurationid";
+			public const string dev_customer = "dev_customer";
 			public const string dev_Name = "dev_name";
-			public const string dev_ordernumber = "dev_ordernumber";
+			public const string dev_orderdate = "dev_orderdate";
+			public const string dev_OrderId = "dev_orderid";
+			public const string Id = "dev_orderid";
 			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string ModifiedBy = "modifiedby";
 			public const string ModifiedOn = "modifiedon";
@@ -53,30 +54,36 @@ namespace CrmEarlyBound
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
+			public const string dev_order_customer_account = "dev_order_customer_account";
+			public const string lk_dev_order_createdby = "lk_dev_order_createdby";
+			public const string lk_dev_order_createdonbehalfby = "lk_dev_order_createdonbehalfby";
+			public const string lk_dev_order_modifiedby = "lk_dev_order_modifiedby";
+			public const string lk_dev_order_modifiedonbehalfby = "lk_dev_order_modifiedonbehalfby";
+			public const string user_dev_order = "user_dev_order";
 		}
 		
 		/// <summary>
 		/// Default Constructor.
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public dev_Configuration() : 
+		public dev_Order() : 
 				base(EntityLogicalName)
 		{
 		}
 		
-		public const string EntityLogicalName = "dev_configuration";
+		public const string EntityLogicalName = "dev_order";
 		
-		public const string EntitySchemaName = "dev_Configuration";
+		public const string EntitySchemaName = "dev_Order";
 		
-		public const string PrimaryIdAttribute = "dev_configurationid";
+		public const string PrimaryIdAttribute = "dev_orderid";
 		
 		public const string PrimaryNameAttribute = "dev_name";
 		
-		public const string EntityLogicalCollectionName = "dev_configurations";
+		public const string EntityLogicalCollectionName = "dev_orders";
 		
-		public const string EntitySetName = "dev_configurations";
+		public const string EntitySetName = "dev_orders";
 		
-		public const int EntityTypeCode = 10657;
+		public const int EntityTypeCode = 10559;
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -147,45 +154,22 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// Unikatowy identyfikator wystąpień encji
+		/// 
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_configurationid")]
-		public System.Nullable<System.Guid> dev_ConfigurationId
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_customer")]
+		public Microsoft.Xrm.Sdk.EntityReference dev_customer
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<System.Guid>>("dev_configurationid");
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("dev_customer");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_ConfigurationId");
-				this.SetAttributeValue("dev_configurationid", value);
-				if (value.HasValue)
-				{
-					base.Id = value.Value;
-				}
-				else
-				{
-					base.Id = System.Guid.Empty;
-				}
-				this.OnPropertyChanged("dev_ConfigurationId");
-			}
-		}
-		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_configurationid")]
-		public override System.Guid Id
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return base.Id;
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.dev_ConfigurationId = value;
+				this.OnPropertyChanging("dev_customer");
+				this.SetAttributeValue("dev_customer", value);
+				this.OnPropertyChanged("dev_customer");
 			}
 		}
 		
@@ -212,20 +196,63 @@ namespace CrmEarlyBound
 		/// <summary>
 		/// 
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_ordernumber")]
-		public string dev_ordernumber
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_orderdate")]
+		public System.Nullable<System.DateTime> dev_orderdate
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<string>("dev_ordernumber");
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("dev_orderdate");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_ordernumber");
-				this.SetAttributeValue("dev_ordernumber", value);
-				this.OnPropertyChanged("dev_ordernumber");
+				this.OnPropertyChanging("dev_orderdate");
+				this.SetAttributeValue("dev_orderdate", value);
+				this.OnPropertyChanged("dev_orderdate");
+			}
+		}
+		
+		/// <summary>
+		/// Unikatowy identyfikator wystąpień encji
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_orderid")]
+		public System.Nullable<System.Guid> dev_OrderId
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("dev_orderid");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dev_OrderId");
+				this.SetAttributeValue("dev_orderid", value);
+				if (value.HasValue)
+				{
+					base.Id = value.Value;
+				}
+				else
+				{
+					base.Id = System.Guid.Empty;
+				}
+				this.OnPropertyChanged("dev_OrderId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_orderid")]
+		public override System.Guid Id
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return base.Id;
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.dev_OrderId = value;
 			}
 		}
 		
@@ -375,10 +402,10 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// Stan elementu/elementów Configuration
+		/// Stan elementu/elementów Order
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<CrmEarlyBound.dev_ConfigurationState> StateCode
+		public System.Nullable<Integration.Infrastructure.CRM.Models.dev_OrderState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -386,7 +413,7 @@ namespace CrmEarlyBound
 				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
 				if ((optionSet != null))
 				{
-					return ((CrmEarlyBound.dev_ConfigurationState)(System.Enum.ToObject(typeof(CrmEarlyBound.dev_ConfigurationState), optionSet.Value)));
+					return ((Integration.Infrastructure.CRM.Models.dev_OrderState)(System.Enum.ToObject(typeof(Integration.Infrastructure.CRM.Models.dev_OrderState), optionSet.Value)));
 				}
 				else
 				{
@@ -410,15 +437,15 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// Przyczyna stanu elementu/elementów Configuration
+		/// Przyczyna stanu elementu/elementów Order
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual dev_Configuration_StatusCode? StatusCode
+		public virtual dev_Order_StatusCode? StatusCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((dev_Configuration_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((dev_Order_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -483,11 +510,136 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
+		/// 1:N dev_Order_dev_order_dev_Invoice
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_Order_dev_order_dev_Invoice")]
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.dev_Invoice> dev_Order_dev_order_dev_Invoice
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Invoice>("dev_Order_dev_order_dev_Invoice", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dev_Order_dev_order_dev_Invoice");
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Invoice>("dev_Order_dev_order_dev_Invoice", null, value);
+				this.OnPropertyChanged("dev_Order_dev_order_dev_Invoice");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 dev_order_customer_account
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_customer")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_order_customer_account")]
+		public Integration.Infrastructure.CRM.Models.Account dev_order_customer_account
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.Account>("dev_order_customer_account", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dev_order_customer_account");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.Account>("dev_order_customer_account", null, value);
+				this.OnPropertyChanged("dev_order_customer_account");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_dev_order_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_order_createdby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_order_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_order_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_dev_order_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_order_createdonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_order_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_order_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_dev_order_createdonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_order_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_dev_order_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_dev_order_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_order_modifiedby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_order_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_order_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_dev_order_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_order_modifiedonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_order_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_order_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_dev_order_modifiedonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_order_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_dev_order_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_dev_order
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_dev_order")]
+		public Integration.Infrastructure.CRM.Models.SystemUser user_dev_order
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("user_dev_order", null);
+			}
+		}
+		
+		/// <summary>
 		/// Constructor for populating via LINQ queries given a LINQ anonymous type
 		/// <param name="anonymousType">LINQ anonymous type.</param>
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public dev_Configuration(object anonymousType) : 
+		public dev_Order(object anonymousType) : 
 				this()
 		{
             foreach (var p in anonymousType.GetType().GetProperties())
@@ -505,9 +657,9 @@ namespace CrmEarlyBound
                 {
                     case "id":
                         base.Id = (System.Guid)value;
-                        Attributes["dev_configurationid"] = base.Id;
+                        Attributes["dev_orderid"] = base.Id;
                         break;
-                    case "dev_configurationid":
+                    case "dev_orderid":
                         var id = (System.Nullable<System.Guid>) value;
                         if(id == null){ continue; }
                         base.Id = id.Value;

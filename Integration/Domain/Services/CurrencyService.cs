@@ -1,6 +1,6 @@
 ﻿using Integration.Domain.Services.Interfaces;
 using Integration.Infrastructure.CRM.Currency;
-using EGC = CrmEarlyBound;
+using EGC =  Integration.Infrastructure.CRM.Models;
 
 namespace Integration.Domain.Services
 {

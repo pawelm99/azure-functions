@@ -1,4 +1,4 @@
-﻿using CrmEarlyBound;
+﻿using Integration.Infrastructure.CRM.Models;
 
 namespace Integration.Domain.Services.Interfaces
 {

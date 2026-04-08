@@ -8,11 +8,11 @@
 //------------------------------------------------------------------------------
 
 
-namespace CrmEarlyBound
+namespace Integration.Infrastructure.CRM.Models
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	public enum dev_InvoiceState
+	public enum dev_ProduktState
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -23,11 +23,11 @@ namespace CrmEarlyBound
 	}
 	
 	/// <summary>
-	/// 
+	/// Ta tabela zawiera informacje o produktach
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dev_invoice")]
-	public partial class dev_Invoice : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("dev_produkt")]
+	public partial class dev_Produkt : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		public static class Fields
@@ -35,20 +35,12 @@ namespace CrmEarlyBound
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
-			public const string dev_customer = "dev_customer";
-			public const string dev_grossamount = "dev_grossamount";
-			public const string dev_grossamount_Base = "dev_grossamount_base";
-			public const string dev_iban = "dev_iban";
-			public const string dev_invoicedate = "dev_invoicedate";
-			public const string dev_InvoiceId = "dev_invoiceid";
-			public const string Id = "dev_invoiceid";
-			public const string dev_invoicenumber = "dev_invoicenumber";
-			public const string dev_netamount = "dev_netamount";
-			public const string dev_netamount_Base = "dev_netamount_base";
-			public const string dev_order = "dev_order";
-			public const string dev_Paymentterms = "dev_paymentterms";
-			public const string dev_vendor = "dev_vendor";
-			public const string dev_VendortaxID = "dev_vendortaxid";
+			public const string dev_Cena = "dev_cena";
+			public const string dev_cena_Base = "dev_cena_base";
+			public const string dev_NazwaProduktu = "dev_nazwaproduktu";
+			public const string dev_ProduktId = "dev_produktid";
+			public const string Id = "dev_produktid";
+			public const string dev_quantity = "dev_quantity";
 			public const string ExchangeRate = "exchangerate";
 			public const string ImportSequenceNumber = "importsequencenumber";
 			public const string ModifiedBy = "modifiedby";
@@ -65,34 +57,36 @@ namespace CrmEarlyBound
 			public const string TransactionCurrencyId = "transactioncurrencyid";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
-			public const string dev_invoice_customer_account = "dev_invoice_customer_account";
-			public const string dev_invoice_vendor_account = "dev_invoice_vendor_account";
-			public const string dev_Order_dev_order_dev_Invoice = "dev_Order_dev_order_dev_Invoice";
-			public const string TransactionCurrency_dev_Invoice = "TransactionCurrency_dev_Invoice";
+			public const string lk_dev_produkt_createdby = "lk_dev_produkt_createdby";
+			public const string lk_dev_produkt_createdonbehalfby = "lk_dev_produkt_createdonbehalfby";
+			public const string lk_dev_produkt_modifiedby = "lk_dev_produkt_modifiedby";
+			public const string lk_dev_produkt_modifiedonbehalfby = "lk_dev_produkt_modifiedonbehalfby";
+			public const string TransactionCurrency_dev_Produkt = "TransactionCurrency_dev_Produkt";
+			public const string user_dev_produkt = "user_dev_produkt";
 		}
 		
 		/// <summary>
 		/// Default Constructor.
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public dev_Invoice() : 
+		public dev_Produkt() : 
 				base(EntityLogicalName)
 		{
 		}
 		
-		public const string EntityLogicalName = "dev_invoice";
+		public const string EntityLogicalName = "dev_produkt";
 		
-		public const string EntitySchemaName = "dev_Invoice";
+		public const string EntitySchemaName = "dev_Produkt";
 		
-		public const string PrimaryIdAttribute = "dev_invoiceid";
+		public const string PrimaryIdAttribute = "dev_produktid";
 		
-		public const string PrimaryNameAttribute = "dev_invoicenumber";
+		public const string PrimaryNameAttribute = "dev_nazwaproduktu";
 		
-		public const string EntityLogicalCollectionName = "dev_invoices";
+		public const string EntityLogicalCollectionName = "dev_produkts";
 		
-		public const string EntitySetName = "dev_invoices";
+		public const string EntitySetName = "dev_produkts";
 		
-		public const int EntityTypeCode = 10596;
+		public const int EntityTypeCode = 10594;
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -165,112 +159,72 @@ namespace CrmEarlyBound
 		/// <summary>
 		/// 
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_customer")]
-		public Microsoft.Xrm.Sdk.EntityReference dev_customer
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_cena")]
+		public Microsoft.Xrm.Sdk.Money dev_Cena
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("dev_customer");
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("dev_cena");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_customer");
-				this.SetAttributeValue("dev_customer", value);
-				this.OnPropertyChanged("dev_customer");
+				this.OnPropertyChanging("dev_Cena");
+				this.SetAttributeValue("dev_cena", value);
+				this.OnPropertyChanged("dev_Cena");
+			}
+		}
+		
+		/// <summary>
+		/// Wartość pola Price w walucie podstawowej.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_cena_base")]
+		public Microsoft.Xrm.Sdk.Money dev_cena_Base
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("dev_cena_base");
 			}
 		}
 		
 		/// <summary>
 		/// 
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_grossamount")]
-		public Microsoft.Xrm.Sdk.Money dev_grossamount
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_nazwaproduktu")]
+		public string dev_NazwaProduktu
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("dev_grossamount");
+				return this.GetAttributeValue<string>("dev_nazwaproduktu");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_grossamount");
-				this.SetAttributeValue("dev_grossamount", value);
-				this.OnPropertyChanged("dev_grossamount");
-			}
-		}
-		
-		/// <summary>
-		/// Wartość pola Gross amount w walucie podstawowej.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_grossamount_base")]
-		public Microsoft.Xrm.Sdk.Money dev_grossamount_Base
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("dev_grossamount_base");
-			}
-		}
-		
-		/// <summary>
-		/// International Bank Account Number
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_iban")]
-		public string dev_iban
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<string>("dev_iban");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("dev_iban");
-				this.SetAttributeValue("dev_iban", value);
-				this.OnPropertyChanged("dev_iban");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_invoicedate")]
-		public System.Nullable<System.DateTime> dev_invoicedate
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<System.DateTime>>("dev_invoicedate");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("dev_invoicedate");
-				this.SetAttributeValue("dev_invoicedate", value);
-				this.OnPropertyChanged("dev_invoicedate");
+				this.OnPropertyChanging("dev_NazwaProduktu");
+				this.SetAttributeValue("dev_nazwaproduktu", value);
+				this.OnPropertyChanged("dev_NazwaProduktu");
 			}
 		}
 		
 		/// <summary>
 		/// Unikatowy identyfikator wystąpień encji
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_invoiceid")]
-		public System.Nullable<System.Guid> dev_InvoiceId
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_produktid")]
+		public System.Nullable<System.Guid> dev_ProduktId
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<System.Guid>>("dev_invoiceid");
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("dev_produktid");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_InvoiceId");
-				this.SetAttributeValue("dev_invoiceid", value);
+				this.OnPropertyChanging("dev_ProduktId");
+				this.SetAttributeValue("dev_produktid", value);
 				if (value.HasValue)
 				{
 					base.Id = value.Value;
@@ -279,11 +233,11 @@ namespace CrmEarlyBound
 				{
 					base.Id = System.Guid.Empty;
 				}
-				this.OnPropertyChanged("dev_InvoiceId");
+				this.OnPropertyChanged("dev_ProduktId");
 			}
 		}
 		
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_invoiceid")]
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_produktid")]
 		public override System.Guid Id
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
@@ -294,140 +248,27 @@ namespace CrmEarlyBound
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.dev_InvoiceId = value;
+				this.dev_ProduktId = value;
 			}
 		}
 		
 		/// <summary>
 		/// 
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_invoicenumber")]
-		public string dev_invoicenumber
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_quantity")]
+		public System.Nullable<int> dev_quantity
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetAttributeValue<string>("dev_invoicenumber");
+				return this.GetAttributeValue<System.Nullable<int>>("dev_quantity");
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_invoicenumber");
-				this.SetAttributeValue("dev_invoicenumber", value);
-				this.OnPropertyChanged("dev_invoicenumber");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_netamount")]
-		public Microsoft.Xrm.Sdk.Money dev_netamount
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("dev_netamount");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("dev_netamount");
-				this.SetAttributeValue("dev_netamount", value);
-				this.OnPropertyChanged("dev_netamount");
-			}
-		}
-		
-		/// <summary>
-		/// Wartość pola Net amount w walucie podstawowej.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_netamount_base")]
-		public Microsoft.Xrm.Sdk.Money dev_netamount_Base
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.Money>("dev_netamount_base");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_order")]
-		public Microsoft.Xrm.Sdk.EntityReference dev_order
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("dev_order");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("dev_order");
-				this.SetAttributeValue("dev_order", value);
-				this.OnPropertyChanged("dev_order");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_paymentterms")]
-		public string dev_Paymentterms
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<string>("dev_paymentterms");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("dev_Paymentterms");
-				this.SetAttributeValue("dev_paymentterms", value);
-				this.OnPropertyChanged("dev_Paymentterms");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_vendor")]
-		public Microsoft.Xrm.Sdk.EntityReference dev_vendor
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("dev_vendor");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("dev_vendor");
-				this.SetAttributeValue("dev_vendor", value);
-				this.OnPropertyChanged("dev_vendor");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_vendortaxid")]
-		public string dev_VendortaxID
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<string>("dev_vendortaxid");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("dev_VendortaxID");
-				this.SetAttributeValue("dev_vendortaxid", value);
-				this.OnPropertyChanged("dev_VendortaxID");
+				this.OnPropertyChanging("dev_quantity");
+				this.SetAttributeValue("dev_quantity", value);
+				this.OnPropertyChanged("dev_quantity");
 			}
 		}
 		
@@ -590,10 +431,10 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// Stan elementu/elementów Invoice
+		/// Stan elementu/elementów Product
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<CrmEarlyBound.dev_InvoiceState> StateCode
+		public System.Nullable<Integration.Infrastructure.CRM.Models.dev_ProduktState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -601,7 +442,7 @@ namespace CrmEarlyBound
 				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
 				if ((optionSet != null))
 				{
-					return ((CrmEarlyBound.dev_InvoiceState)(System.Enum.ToObject(typeof(CrmEarlyBound.dev_InvoiceState), optionSet.Value)));
+					return ((Integration.Infrastructure.CRM.Models.dev_ProduktState)(System.Enum.ToObject(typeof(Integration.Infrastructure.CRM.Models.dev_ProduktState), optionSet.Value)));
 				}
 				else
 				{
@@ -625,15 +466,15 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// Przyczyna stanu elementu/elementów Invoice
+		/// Przyczyna stanu elementu/elementów Product
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
-		public virtual dev_Invoice_StatusCode? StatusCode
+		public virtual dev_Produkt_StatusCode? StatusCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return ((dev_Invoice_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
+				return ((dev_Produkt_StatusCode?)(EntityOptionSetEnum.GetEnum(this, "statuscode")));
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
@@ -718,86 +559,107 @@ namespace CrmEarlyBound
 		}
 		
 		/// <summary>
-		/// N:1 dev_invoice_customer_account
+		/// N:1 lk_dev_produkt_createdby
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_customer")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_invoice_customer_account")]
-		public CrmEarlyBound.Account dev_invoice_customer_account
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_produkt_createdby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_produkt_createdby
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<CrmEarlyBound.Account>("dev_invoice_customer_account", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("dev_invoice_customer_account");
-				this.SetRelatedEntity<CrmEarlyBound.Account>("dev_invoice_customer_account", null, value);
-				this.OnPropertyChanged("dev_invoice_customer_account");
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_produkt_createdby", null);
 			}
 		}
 		
 		/// <summary>
-		/// N:1 dev_invoice_vendor_account
+		/// N:1 lk_dev_produkt_createdonbehalfby
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_vendor")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_invoice_vendor_account")]
-		public CrmEarlyBound.Account dev_invoice_vendor_account
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_produkt_createdonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_produkt_createdonbehalfby
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<CrmEarlyBound.Account>("dev_invoice_vendor_account", null);
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_produkt_createdonbehalfby", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("dev_invoice_vendor_account");
-				this.SetRelatedEntity<CrmEarlyBound.Account>("dev_invoice_vendor_account", null, value);
-				this.OnPropertyChanged("dev_invoice_vendor_account");
+				this.OnPropertyChanging("lk_dev_produkt_createdonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_produkt_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_dev_produkt_createdonbehalfby");
 			}
 		}
 		
 		/// <summary>
-		/// N:1 dev_Order_dev_order_dev_Invoice
+		/// N:1 lk_dev_produkt_modifiedby
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("dev_order")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_Order_dev_order_dev_Invoice")]
-		public CrmEarlyBound.dev_Order dev_Order_dev_order_dev_Invoice
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_produkt_modifiedby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_produkt_modifiedby
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<CrmEarlyBound.dev_Order>("dev_Order_dev_order_dev_Invoice", null);
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("dev_Order_dev_order_dev_Invoice");
-				this.SetRelatedEntity<CrmEarlyBound.dev_Order>("dev_Order_dev_order_dev_Invoice", null, value);
-				this.OnPropertyChanged("dev_Order_dev_order_dev_Invoice");
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_produkt_modifiedby", null);
 			}
 		}
 		
 		/// <summary>
-		/// N:1 TransactionCurrency_dev_Invoice
+		/// N:1 lk_dev_produkt_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_dev_produkt_modifiedonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_dev_produkt_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_produkt_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_dev_produkt_modifiedonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_dev_produkt_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_dev_produkt_modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 TransactionCurrency_dev_Produkt
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
-		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_dev_Invoice")]
-		public CrmEarlyBound.TransactionCurrency TransactionCurrency_dev_Invoice
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("TransactionCurrency_dev_Produkt")]
+		public Integration.Infrastructure.CRM.Models.TransactionCurrency TransactionCurrency_dev_Produkt
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<CrmEarlyBound.TransactionCurrency>("TransactionCurrency_dev_Invoice", null);
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.TransactionCurrency>("TransactionCurrency_dev_Produkt", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
-				this.OnPropertyChanging("TransactionCurrency_dev_Invoice");
-				this.SetRelatedEntity<CrmEarlyBound.TransactionCurrency>("TransactionCurrency_dev_Invoice", null, value);
-				this.OnPropertyChanged("TransactionCurrency_dev_Invoice");
+				this.OnPropertyChanging("TransactionCurrency_dev_Produkt");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.TransactionCurrency>("TransactionCurrency_dev_Produkt", null, value);
+				this.OnPropertyChanged("TransactionCurrency_dev_Produkt");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_dev_produkt
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_dev_produkt")]
+		public Integration.Infrastructure.CRM.Models.SystemUser user_dev_produkt
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("user_dev_produkt", null);
 			}
 		}
 		
@@ -806,7 +668,7 @@ namespace CrmEarlyBound
 		/// <param name="anonymousType">LINQ anonymous type.</param>
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public dev_Invoice(object anonymousType) : 
+		public dev_Produkt(object anonymousType) : 
 				this()
 		{
             foreach (var p in anonymousType.GetType().GetProperties())
@@ -824,9 +686,9 @@ namespace CrmEarlyBound
                 {
                     case "id":
                         base.Id = (System.Guid)value;
-                        Attributes["dev_invoiceid"] = base.Id;
+                        Attributes["dev_produktid"] = base.Id;
                         break;
-                    case "dev_invoiceid":
+                    case "dev_produktid":
                         var id = (System.Nullable<System.Guid>) value;
                         if(id == null){ continue; }
                         base.Id = id.Value;

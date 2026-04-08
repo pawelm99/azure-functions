@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace CrmEarlyBound
+namespace Integration.Infrastructure.CRM.Models
 {
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -187,8 +187,15 @@ namespace CrmEarlyBound
 			public const string YomiName = "yominame";
 			public const string Referencingaccount_master_account = "account_master_account";
 			public const string Referencingaccount_parent_account = "account_parent_account";
+			public const string account_primary_contact = "account_primary_contact";
+			public const string lk_accountbase_createdby = "lk_accountbase_createdby";
+			public const string lk_accountbase_createdonbehalfby = "lk_accountbase_createdonbehalfby";
+			public const string lk_accountbase_modifiedby = "lk_accountbase_modifiedby";
+			public const string lk_accountbase_modifiedonbehalfby = "lk_accountbase_modifiedonbehalfby";
 			public const string Referencingmsa_account_managingpartner = "msa_account_managingpartner";
+			public const string system_user_accounts = "system_user_accounts";
 			public const string transactioncurrency_account = "transactioncurrency_account";
+			public const string user_accounts = "user_accounts";
 		}
 		
 		/// <summary>
@@ -2789,7 +2796,7 @@ namespace CrmEarlyBound
 		/// Pokazuje, czy klient jest aktywny, czy nie. Klienci nieaktywni są tylko do odczytu i nie można ich edytować bez uprzedniej ponownej aktywacji.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
-		public System.Nullable<CrmEarlyBound.AccountState> StateCode
+		public System.Nullable<Integration.Infrastructure.CRM.Models.AccountState> StateCode
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
@@ -2797,7 +2804,7 @@ namespace CrmEarlyBound
 				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
 				if ((optionSet != null))
 				{
-					return ((CrmEarlyBound.AccountState)(System.Enum.ToObject(typeof(CrmEarlyBound.AccountState), optionSet.Value)));
+					return ((Integration.Infrastructure.CRM.Models.AccountState)(System.Enum.ToObject(typeof(Integration.Infrastructure.CRM.Models.AccountState), optionSet.Value)));
 				}
 				else
 				{
@@ -3110,18 +3117,18 @@ namespace CrmEarlyBound
 		/// 1:N account_master_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
-		public System.Collections.Generic.IEnumerable<CrmEarlyBound.Account> Referencedaccount_master_account
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.Account> Referencedaccount_master_account
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<CrmEarlyBound.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced);
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("Referencedaccount_master_account");
-				this.SetRelatedEntities<CrmEarlyBound.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedaccount_master_account");
 			}
 		}
@@ -3130,19 +3137,59 @@ namespace CrmEarlyBound
 		/// 1:N account_parent_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
-		public System.Collections.Generic.IEnumerable<CrmEarlyBound.Account> Referencedaccount_parent_account
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.Account> Referencedaccount_parent_account
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<CrmEarlyBound.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referenced);
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referenced);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("Referencedaccount_parent_account");
-				this.SetRelatedEntities<CrmEarlyBound.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedaccount_parent_account");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N contact_customer_accounts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contact_customer_accounts")]
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.Contact> contact_customer_accounts
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.Contact>("contact_customer_accounts", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("contact_customer_accounts");
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.Contact>("contact_customer_accounts", null, value);
+				this.OnPropertyChanged("contact_customer_accounts");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N dev_account_dev_opportunity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_account_dev_opportunity")]
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.dev_Opportunity> dev_account_dev_opportunity
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Opportunity>("dev_account_dev_opportunity", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("dev_account_dev_opportunity");
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Opportunity>("dev_account_dev_opportunity", null, value);
+				this.OnPropertyChanged("dev_account_dev_opportunity");
 			}
 		}
 		
@@ -3150,18 +3197,18 @@ namespace CrmEarlyBound
 		/// 1:N dev_invoice_customer_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_invoice_customer_account")]
-		public System.Collections.Generic.IEnumerable<CrmEarlyBound.dev_Invoice> dev_invoice_customer_account
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.dev_Invoice> dev_invoice_customer_account
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<CrmEarlyBound.dev_Invoice>("dev_invoice_customer_account", null);
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Invoice>("dev_invoice_customer_account", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("dev_invoice_customer_account");
-				this.SetRelatedEntities<CrmEarlyBound.dev_Invoice>("dev_invoice_customer_account", null, value);
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Invoice>("dev_invoice_customer_account", null, value);
 				this.OnPropertyChanged("dev_invoice_customer_account");
 			}
 		}
@@ -3170,18 +3217,18 @@ namespace CrmEarlyBound
 		/// 1:N dev_invoice_vendor_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_invoice_vendor_account")]
-		public System.Collections.Generic.IEnumerable<CrmEarlyBound.dev_Invoice> dev_invoice_vendor_account
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.dev_Invoice> dev_invoice_vendor_account
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<CrmEarlyBound.dev_Invoice>("dev_invoice_vendor_account", null);
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Invoice>("dev_invoice_vendor_account", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("dev_invoice_vendor_account");
-				this.SetRelatedEntities<CrmEarlyBound.dev_Invoice>("dev_invoice_vendor_account", null, value);
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Invoice>("dev_invoice_vendor_account", null, value);
 				this.OnPropertyChanged("dev_invoice_vendor_account");
 			}
 		}
@@ -3190,18 +3237,18 @@ namespace CrmEarlyBound
 		/// 1:N dev_order_customer_account
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("dev_order_customer_account")]
-		public System.Collections.Generic.IEnumerable<CrmEarlyBound.dev_Order> dev_order_customer_account
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.dev_Order> dev_order_customer_account
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<CrmEarlyBound.dev_Order>("dev_order_customer_account", null);
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Order>("dev_order_customer_account", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("dev_order_customer_account");
-				this.SetRelatedEntities<CrmEarlyBound.dev_Order>("dev_order_customer_account", null, value);
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.dev_Order>("dev_order_customer_account", null, value);
 				this.OnPropertyChanged("dev_order_customer_account");
 			}
 		}
@@ -3210,19 +3257,39 @@ namespace CrmEarlyBound
 		/// 1:N msa_account_managingpartner
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referenced)]
-		public System.Collections.Generic.IEnumerable<CrmEarlyBound.Account> Referencedmsa_account_managingpartner
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.Account> Referencedmsa_account_managingpartner
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntities<CrmEarlyBound.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referenced);
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referenced);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("Referencedmsa_account_managingpartner");
-				this.SetRelatedEntities<CrmEarlyBound.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referenced, value);
 				this.OnPropertyChanged("Referencedmsa_account_managingpartner");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N msa_contact_managingpartner
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msa_contact_managingpartner")]
+		public System.Collections.Generic.IEnumerable<Integration.Infrastructure.CRM.Models.Contact> msa_contact_managingpartner
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntities<Integration.Infrastructure.CRM.Models.Contact>("msa_contact_managingpartner", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("msa_contact_managingpartner");
+				this.SetRelatedEntities<Integration.Infrastructure.CRM.Models.Contact>("msa_contact_managingpartner", null, value);
+				this.OnPropertyChanged("msa_contact_managingpartner");
 			}
 		}
 		
@@ -3231,12 +3298,12 @@ namespace CrmEarlyBound
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("masterid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
-		public CrmEarlyBound.Account Referencingaccount_master_account
+		public Integration.Infrastructure.CRM.Models.Account Referencingaccount_master_account
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<CrmEarlyBound.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.Account>("account_master_account", Microsoft.Xrm.Sdk.EntityRole.Referencing);
 			}
 		}
 		
@@ -3245,19 +3312,110 @@ namespace CrmEarlyBound
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentaccountid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
-		public CrmEarlyBound.Account Referencingaccount_parent_account
+		public Integration.Infrastructure.CRM.Models.Account Referencingaccount_parent_account
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<CrmEarlyBound.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referencing);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("Referencingaccount_parent_account");
-				this.SetRelatedEntity<CrmEarlyBound.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.Account>("account_parent_account", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
 				this.OnPropertyChanged("Referencingaccount_parent_account");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 account_primary_contact
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("primarycontactid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("account_primary_contact")]
+		public Integration.Infrastructure.CRM.Models.Contact account_primary_contact
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.Contact>("account_primary_contact", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("account_primary_contact");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.Contact>("account_primary_contact", null, value);
+				this.OnPropertyChanged("account_primary_contact");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_accountbase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_createdby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_accountbase_createdby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_accountbase_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_accountbase_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_createdonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_accountbase_createdonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_accountbase_createdonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_accountbase_createdonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_accountbase_createdonbehalfby", null, value);
+				this.OnPropertyChanged("lk_accountbase_createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_accountbase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_modifiedby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_accountbase_modifiedby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_accountbase_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_accountbase_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_accountbase_modifiedonbehalfby")]
+		public Integration.Infrastructure.CRM.Models.SystemUser lk_accountbase_modifiedonbehalfby
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_accountbase_modifiedonbehalfby", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("lk_accountbase_modifiedonbehalfby");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("lk_accountbase_modifiedonbehalfby", null, value);
+				this.OnPropertyChanged("lk_accountbase_modifiedonbehalfby");
 			}
 		}
 		
@@ -3266,19 +3424,40 @@ namespace CrmEarlyBound
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("msa_managingpartnerid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referencing)]
-		public CrmEarlyBound.Account Referencingmsa_account_managingpartner
+		public Integration.Infrastructure.CRM.Models.Account Referencingmsa_account_managingpartner
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<CrmEarlyBound.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referencing);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("Referencingmsa_account_managingpartner");
-				this.SetRelatedEntity<CrmEarlyBound.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.Account>("msa_account_managingpartner", Microsoft.Xrm.Sdk.EntityRole.Referencing, value);
 				this.OnPropertyChanged("Referencingmsa_account_managingpartner");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 system_user_accounts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredsystemuserid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("system_user_accounts")]
+		public Integration.Infrastructure.CRM.Models.SystemUser system_user_accounts
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("system_user_accounts", null);
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("system_user_accounts");
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("system_user_accounts", null, value);
+				this.OnPropertyChanged("system_user_accounts");
 			}
 		}
 		
@@ -3287,19 +3466,33 @@ namespace CrmEarlyBound
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("transactioncurrencyid")]
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("transactioncurrency_account")]
-		public CrmEarlyBound.TransactionCurrency transactioncurrency_account
+		public Integration.Infrastructure.CRM.Models.TransactionCurrency transactioncurrency_account
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.GetRelatedEntity<CrmEarlyBound.TransactionCurrency>("transactioncurrency_account", null);
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.TransactionCurrency>("transactioncurrency_account", null);
 			}
 			[System.Diagnostics.DebuggerNonUserCode()]
 			set
 			{
 				this.OnPropertyChanging("transactioncurrency_account");
-				this.SetRelatedEntity<CrmEarlyBound.TransactionCurrency>("transactioncurrency_account", null, value);
+				this.SetRelatedEntity<Integration.Infrastructure.CRM.Models.TransactionCurrency>("transactioncurrency_account", null, value);
 				this.OnPropertyChanged("transactioncurrency_account");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 user_accounts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("user_accounts")]
+		public Integration.Infrastructure.CRM.Models.SystemUser user_accounts
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetRelatedEntity<Integration.Infrastructure.CRM.Models.SystemUser>("user_accounts", null);
 			}
 		}
 		
