@@ -30,7 +30,6 @@ namespace Integration.Activities
                 if (account != null)
                 {
                     _logger.LogInformation($"Exists seller with id: {account.Id}");
-                    Console.WriteLine($"Exists seller with id: {account.Id}");
                     invoice.Vendor.Id = account.Id;
                     continue;
                 }
@@ -38,7 +37,6 @@ namespace Integration.Activities
 
                 var sallerId = await _accountService.CreateSellerAsync(invoice.Vendor, cancellationToken);
                 _logger.LogInformation($"Created seller with id: {sallerId}");
-                Console.WriteLine($"Created seller with id: {sallerId}");
                 invoice.Vendor.Id = sallerId;
             }
             return invoices;

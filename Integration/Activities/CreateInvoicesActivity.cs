@@ -25,7 +25,6 @@ namespace Integration.Activities
             {
                 var invoiceId = await _invoiceService.CreateInvoiceAsync(invoice, cancellationToken);
                 _logger.LogInformation($"Created invoice with id: {invoiceId}");
-                Console.WriteLine($"Created invoice with id: {invoiceId}");
                 invoice.Id = invoiceId;
             }
             return invoices;

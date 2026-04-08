@@ -22,17 +22,29 @@ namespace Integration.Domain.Services
         public async Task<List<Invoice>?> ExtractInvoiceFromPdfAsync(string message)
         {
             var fileBytes = Convert.FromBase64String(message);
-            Console.WriteLine($"Read file from message: {fileBytes}");
             _logger.LogInformation($"Read file from message: {fileBytes}");
 
             using MemoryStream stream = new(fileBytes);
 
-            var client = new DocumentAnalysisClient(new Uri(_configuration["Values:FormRecognizerUrl"]!), new AzureKeyCredential(_configuration["Values:FormRecognizerKey"]!));
+            var clientOptions = new DocumentAnalysisClientOptions
+            {
+                Retry =
+                {
+                    MaxRetries = 3,
+                    Delay = TimeSpan.FromSeconds(2),
+                    MaxDelay = TimeSpan.FromSeconds(16),
+                    Mode = Azure.Core.RetryMode.Exponential,
+                    NetworkTimeout = TimeSpan.FromMinutes(5)
+                }
+            };
+
+            var client = new DocumentAnalysisClient(new Uri(_configuration["FormRecognizerUrl"]!), 
+                new AzureKeyCredential(_configuration["FormRecognizerKey"]!), clientOptions);
+
             var poller = await client.AnalyzeDocumentAsync(WaitUntil.Completed, "prebuilt-invoice", stream);
             var result = poller?.Value;
             if (result == null || result?.Documents == null) return null;
 
-            Console.WriteLine("AI read document");
             _logger.LogInformation($"AI read document");
 
             var invoices = new List<Invoice>();
@@ -42,10 +54,7 @@ namespace Integration.Domain.Services
                 var customer = new Customer();
                 var vendor = new Vendor();
 
-                Console.WriteLine($"Document {i}:");
                 AnalyzedDocument document = result.Documents[i];
-
-                Console.WriteLine("Set invoice, customer, vendor");
                 _logger.LogInformation($"Set invoice, customer, vendort");
 
                 customer.Name = GetFieldByName("CustomerName", DocumentFieldType.String, document)?.AsString();
@@ -82,7 +91,6 @@ namespace Integration.Domain.Services
             {
                 if (field.FieldType == type)
                 {
-                    Console.WriteLine($"Readed file: {field.Value} of type {type}.");
                     return field.Value;
                 }
             }

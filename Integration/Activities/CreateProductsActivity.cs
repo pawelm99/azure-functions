@@ -35,7 +35,6 @@ namespace Integration.Activities
                     if (product != null)
                     {
                         _logger.LogInformation($"Exists customer with id: {product.Id}");
-                        Console.WriteLine($"Exists customer with id: {product.Id}");
                         item.Id = product.Id;
                         continue;
                     }
@@ -50,7 +49,6 @@ namespace Integration.Activities
 
                     Guid productId = await _productService.CreateProductAsync(productSQL!, cancellationToken);
                     _logger.LogInformation($"Created product with id: {productId}");
-                    Console.WriteLine($"Created product with id: {productId}");
                     item.Id = productId;
                 }
             }

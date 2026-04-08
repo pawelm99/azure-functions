@@ -35,6 +35,7 @@ namespace Integration.Extensions
             return services;
         }
 
+
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration config)
         {
             var connectionString = config.GetConnectionString("AzIntegrationDB");
@@ -42,20 +43,23 @@ namespace Integration.Extensions
             return services;
         }
 
+
         public static IServiceCollection AddServiceBus(this IServiceCollection services, IConfiguration config)
         {
-            var connectionString = config.GetConnectionString("ServiceBusConnection");
+            var connectionString = config["ServiceBusConnection"];
             services.AddSingleton(new ServiceBusClient(connectionString));
             return services;
         }
+            
 
         public static IServiceCollection AddEventGrid(this IServiceCollection services, IConfiguration config)
         {
-            var topicEndpoint = config["Values:EventGridTopicEndpoint"]!;
-            var topicKey = config["Values:EventGridTopicKey"]!;
+            var topicEndpoint = config["EventGridTopicEndpoint"]!;
+            var topicKey = config["EventGridTopicKey"]!;
             services.AddSingleton(new EventGridPublisherClient(new Uri(topicEndpoint), new Azure.AzureKeyCredential(topicKey)));
             return services;
         }
+
 
         public static IServiceCollection AddDomainServices(this IServiceCollection services)
         {
@@ -69,6 +73,7 @@ namespace Integration.Extensions
             return services;
         }
 
+
         public static IServiceCollection AddCrmClients(this IServiceCollection services)
         {
             services.AddScoped<IAccountCrmClient, AccountCrmClient>();
@@ -80,11 +85,13 @@ namespace Integration.Extensions
             return services;
         }
 
+
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IProductRepository, SqlProductRepository>();
             return services;
         }
+
 
         public static IServiceCollection AddOrchestratorOptions(this IServiceCollection services, IConfiguration config)
         {
@@ -92,6 +99,7 @@ namespace Integration.Extensions
             services.AddSingleton<ITaskOptionsProvider, TaskOptionsProvider>();
             return services;
         }
+
 
         public static IServiceCollection AddDataverseServiceClient(this IServiceCollection services)
             => services

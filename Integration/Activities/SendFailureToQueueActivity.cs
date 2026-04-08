@@ -1,4 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
+using Integration.Application.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
@@ -19,10 +20,9 @@ namespace Integration.Activities
 
 
         [Function(nameof(SendFailureToQueueActivity))]
-        public async Task Run([ActivityTrigger] dynamic input,
-            ServiceBusClient client)
+        public async Task Run([ActivityTrigger] ErrorDetails input)
         {
-            var sender = client.CreateSender("notifications-queue");
+            var sender = serviceBusClient.CreateSender("notifications-queue");
             var message = new ServiceBusMessage(JsonSerializer.Serialize(input));
 
             await sender.SendMessageAsync(message);

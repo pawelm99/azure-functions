@@ -26,7 +26,8 @@ public class OrderOrchestrator
     {
         var taskOptions = _taskOptionsProvider.GetDefaultTaskOptions();
         var message = context.GetInput<string>();
-        
+
+
         List<Invoice>? invoices = await CallActivityWithFailureHandling<List<Invoice>?>(context, nameof(ProcessDocumentActivity), message, taskOptions);
         invoices = await CallActivityWithFailureHandling<List<Invoice>>(context, nameof(CreateSellersActivity), invoices, taskOptions);
         invoices = await CallActivityWithFailureHandling<List<Invoice>>(context, nameof(CreateCustomersActivity), invoices, taskOptions);
@@ -37,9 +38,9 @@ public class OrderOrchestrator
 
 
     private async Task<T> CallActivityWithFailureHandling<T>(
-        TaskOrchestrationContext context, 
-        string activityName, 
-        object? input, 
+        TaskOrchestrationContext context,
+        string activityName,
+        object? input,
         TaskOptions taskOptions)
     {
         try
@@ -51,7 +52,7 @@ public class OrderOrchestrator
         {
             _logger.LogError(ex, "Step {ActivityName} failed for instance {InstanceId}", activityName, context.InstanceId);
 
-            await context.CallActivityAsync("SendFailureToQueue", new
+            await context.CallActivityAsync(nameof(SendFailureToQueueActivity), new ErrorDetails
             {
                 Step = activityName,
                 InstanceId = context.InstanceId,

@@ -23,7 +23,6 @@ namespace Integration.Activities
         {
             Guid orderId = await _orderService.CreateOrderAsync(invoices, cancellationToken);
             _logger.LogInformation($"Created order with id: {orderId}");
-            Console.WriteLine($"Created order with id: {orderId}");
             return orderId;
         }
     }

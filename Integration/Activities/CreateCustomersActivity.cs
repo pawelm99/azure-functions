@@ -31,7 +31,6 @@ namespace Integration.Activities
                 if (account != null)
                 {
                     _logger.LogInformation($"Exists customer with id: {account.Id}");
-                    Console.WriteLine($"Exists customer with id: {account.Id}");
                     invoice.Customer.Id = account.Id;
                     continue;
                 }
@@ -39,7 +38,6 @@ namespace Integration.Activities
 
                 var customerId = await _accountService.CreateCustomerAsync(invoice.Customer, cancellationToken);
                 _logger.LogInformation($"Created customer with id: {customerId}");
-                Console.WriteLine($"Created customer with id: {customerId}");
                 invoice.Customer.Id = customerId;
             }
             return invoices;
