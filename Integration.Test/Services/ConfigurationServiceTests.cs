@@ -1,7 +1,7 @@
 using Integration.Domain.Services;
 using Integration.Infrastructure.CRM.Configuration;
 using Moq;
-using EGC = CrmEarlyBound;
+using EGC = Integration.Infrastructure.CRM.Models;
 
 namespace Integration.Test.Services
 {
