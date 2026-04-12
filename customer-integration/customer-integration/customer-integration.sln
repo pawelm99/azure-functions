@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{AE8E2E54-CA0B-F6F5-0102-F79722AD1421}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer-integration", "Customer-integration\Customer-integration.csproj", "{FB956465-6389-9276-7294-9979C28530DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE8E2E54-CA0B-F6F5-0102-F79722AD1421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE8E2E54-CA0B-F6F5-0102-F79722AD1421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE8E2E54-CA0B-F6F5-0102-F79722AD1421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE8E2E54-CA0B-F6F5-0102-F79722AD1421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB956465-6389-9276-7294-9979C28530DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB956465-6389-9276-7294-9979C28530DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB956465-6389-9276-7294-9979C28530DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB956465-6389-9276-7294-9979C28530DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2FDE954-F4A0-4D61-9354-2E7E99557477}
+	EndGlobalSection
+EndGlobal
