@@ -23,7 +23,12 @@ namespace customer_integration.Domain.Services
         public async Task UpdateCaseAsync(Guid id, string priority, CancellationToken cancellationToken = default)
             => await _caseClient.UpdateCaseAsync(id, priority, cancellationToken);
 
+
         public async Task<dev_Case> GetCaseAsync(Guid caseId, CancellationToken cancellationToken)
             => await _caseClient.GetCaseAsync(caseId, cancellationToken);
+
+
+        public async Task<List<dev_Case?>> GetAllCaseAsync(CancellationToken cancellationToken)
+          => await _caseClient.GetAllCaseAsync(cancellationToken);
     }
 }

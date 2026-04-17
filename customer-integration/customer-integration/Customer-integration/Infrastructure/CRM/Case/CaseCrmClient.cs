@@ -35,12 +35,20 @@ namespace customer_integration.Infrastructure.CRM.Case
 
         public async Task<dev_Case> GetCaseAsync(Guid caseId, CancellationToken cancellationToken)
             => (await _serviceClient.RetrieveAsync(dev_Case.EntityLogicalName, caseId,
-                new ColumnSet(dev_Case.Fields.dev_description, 
-                    dev_Case.Fields.dev_customer, 
-                    dev_Case.Fields.dev_title, 
+                new ColumnSet(dev_Case.Fields.dev_description,
+                    dev_Case.Fields.dev_customer,
+                    dev_Case.Fields.dev_title,
                     dev_Case.Fields.dev_apartment),
                 cancellationToken))
             .ToEntity<dev_Case>();
+
+
+        public async Task<List<dev_Case?>> GetAllCaseAsync(CancellationToken cancellationToken) 
+            => (await _serviceClient.RetrieveMultipleAsync(new QueryExpression
+            {
+                EntityName = dev_Case.EntityLogicalName,
+                ColumnSet = new ColumnSet(dev_Case.Fields.dev_priority, dev_Case.Fields.StateCode),
+            }, cancellationToken))?.Entities?.Select(r => r?.ToEntity<EGC.dev_Case>())?.ToList() ?? new List<dev_Case?>();
 
 
         public async Task UpdateCaseAsync(Guid id, string priority, CancellationToken cancellationToken)
