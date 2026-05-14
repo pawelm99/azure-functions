@@ -10,7 +10,7 @@ builder.ConfigureFunctionsWebApplication();
 
 var directory = AppDomain.CurrentDomain.BaseDirectory;
 var configuration = builder.Configuration.SetBasePath(directory)
-    .AddJsonFile("local.settings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
     .AddEnvironmentVariables()
     .Build();
 

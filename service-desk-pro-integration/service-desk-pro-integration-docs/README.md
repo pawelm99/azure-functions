@@ -1,5 +1,9 @@
 # 🗂️ ServiceDeskPro — Automation
 
+![alt text](portal.png)
+
+![alt text](postman.png)
+
 This part of the project contains two small background programs that keep the help desk running automatically — no one needs to press a button.
 
 ---
@@ -46,3 +50,6 @@ When a ticket arrives from outside, its urgency label is translated to our inter
 ---
 
 > 💡 Both automations run in the background entirely on their own. Once deployed, they require no human action — they just keep the help desk tidy and up to date around the clock.
+
+![alt text](crm-sla.png)
+![alt text](crm-main.png)
